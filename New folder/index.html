@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Sinh Nhật Em Yêu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Cánh cửa bí ẩn -->
+    <div id="door-container" class="active">
+        <div class="door">
+            <div class="door-front">
+                <div class="door-content">
+                    <h1 class="animate__animated animate__fadeIn">Có một thế giới đặc biệt chỉ dành cho em</h1>
+                    <p class="animate__animated animate__fadeIn animate__delay-1s">Hãy nhấn vào đây để khám phá!</p>
+                    <button id="open-door" class="animate__animated animate__pulse animate__infinite">Mở</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vũ trụ sinh nhật -->
+    <div id="universe" class="hidden">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <h1 class="universe-title">Vũ Trụ Sinh Nhật Của Em</h1>
+        
+        <!-- Các hành tinh -->
+        <div class="planets-container">
+            <div class="planet memory" data-section="memories">
+                <span>Hành Tinh Kỷ Niệm</span>
+            </div>
+            <div class="planet letter" data-section="letter">
+                <span>Hành Tinh Cảm Xúc</span>
+            </div>
+            <div class="planet game" data-section="game">
+                <span>Hành Tinh Thử Thách</span>
+            </div>
+            <div class="planet gift" data-section="gift">
+                <span>Hành Tinh Món Quà</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phần lá thư -->
+    <div id="letter-section" class="section hidden">
+        <button class="back-btn"><i class="fas fa-arrow-left"></i> Quay lại vũ trụ</button>
+        <div class="book">
+            <div class="page" id="letter-page">
+                <div class="letter-content">
+                    <h2>Gửi Em Yêu,</h2>
+                    <div id="typing-text"></div>
+                    <div class="letter-image">
+                        <img src="images/anh1.jpg" alt="Kỷ niệm của chúng ta">
+                    </div>
+                    <p class="wish-button">Anh có một điều ước cho em, hãy bấm vào đây để biết!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phần album ảnh -->
+    <div id="memories-section" class="section hidden">
+        <button class="back-btn"><i class="fas fa-arrow-left"></i> Quay lại vũ trụ</button>
+        <div class="memory-map">
+            <h2>Bản Đồ Kỷ Niệm</h2>
+            <div class="memory-container">
+                <div class="memory-point" data-index="0">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="memory-point" data-index="1">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="memory-point" data-index="2">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="memory-point" data-index="3">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                
+                <div class="memory-detail hidden" id="memory-detail">
+                    <div class="close-memory">×</div>
+                    <div class="memory-image">
+                        <img id="current-memory-img" src="images/anh5.jpg" alt="Kỷ niệm">
+                    </div>
+                    <div class="memory-text">
+                        <p id="memory-description"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="video-btn">
+                <button id="show-video">Xem Video Đặc Biệt</button>
+            </div>
+            
+            <!-- Popup Video -->
+            <div id="video-popup" class="hidden">
+                <div class="video-content">
+                    <div class="close-video">×</div>
+                    <video id="birthday-video" width="640" height="360" controls>
+                        <source src="images/video.mp4" type="video/mp4">
+                        Trình duyệt của bạn không hỗ trợ video.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phần mini game -->
+    <div id="game-section" class="section hidden">
+        <button class="back-btn"><i class="fas fa-arrow-left"></i> Quay lại vũ trụ</button>
+        <div class="games-container">
+            <h2>Những Thử Thách Dành Cho Em</h2>
+            
+            <div class="game-card" id="puzzle-game">
+                <h3>Giải Mã Tình Yêu</h3>
+                <p>Trả lời đúng câu hỏi để lộ diện bức tranh bí mật</p>
+                <button class="play-btn">Chơi ngay</button>
+            </div>
+            
+            <div class="game-card" id="treasure-game">
+                <h3>Tìm Kho Báu Sinh Nhật</h3>
+                <p>Tìm và ghép đúng những kỷ niệm của chúng mình</p>
+                <button class="play-btn">Chơi ngay</button>
+            </div>
+            
+            <div class="game-card" id="wheel-game">
+                <h3>Vòng Quay Điều Ước</h3>
+                <p>Quay để nhận món quà đặc biệt từ anh</p>
+                <button class="play-btn">Chơi ngay</button>
+            </div>
+        </div>
+        
+        <!-- Game puzzle -->
+        <div id="puzzle-container" class="game-content hidden">
+            <h3>Giải Mã Tình Yêu</h3>
+            <div class="puzzle-image">
+                <div class="puzzle-overlay" style="opacity: 1;"></div>
+                <img src="images/anhminhhoa1.jpg" alt="Bức tranh bí mật">
+            </div>
+            <div class="puzzle-question">
+                <p id="current-question">Câu hỏi sẽ xuất hiện ở đây</p>
+                <input type="text" id="puzzle-answer" placeholder="Nhập câu trả lời...">
+                <button id="submit-answer">Trả lời</button>
+            </div>
+            <button class="back-to-games">Quay lại</button>
+        </div>
+        
+        <!-- Game kho báu -->
+        <div id="treasure-container" class="game-content hidden">
+            <h3>Tìm Kho Báu Sinh Nhật</h3>
+            <div class="treasure-map">
+                <div class="drop-zones">
+                    <div class="drop-zone" data-item="first-date"></div>
+                    <div class="drop-zone" data-item="first-gift"></div>
+                    <div class="drop-zone" data-item="special-place"></div>
+                </div>
+                <div class="drag-items">
+                    <div class="drag-item" draggable="true" data-item="first-date">
+                        <i class="fas fa-ticket-alt"></i> <span>Vé xem phim đầu tiên</span>
+                    </div>
+                    <div class="drag-item" draggable="true" data-item="first-gift">
+                        <i class="fas fa-gift"></i> <span>Món quà đầu tiên</span>
+                    </div>
+                    <div class="drag-item" draggable="true" data-item="special-place">
+                        <i class="fas fa-map-marker-alt"></i> <span>Nơi đặc biệt</span>
+                    </div>
+                </div>
+            </div>
+            <div id="treasure-message" class="hidden">
+                <p>Chúc mừng! Em đã tìm thấy kho báu!</p>
+                <div class="treasure-content">
+                    <img src="images/monquadautien.jpg" alt="Kho báu">
+                    <p>Hồi Cấp 3 nhé</p>
+                </div>
+            </div>
+            <button class="back-to-games">Quay lại</button>
+        </div>
+        
+        <!-- Game vòng quay -->
+        <div id="wheel-container" class="game-content hidden">
+            <h3>Vòng Quay Điều Ước</h3>
+            <div class="wheel">
+                <div class="wheel-container">
+                    <div class="wheel-content">
+                        <div class="wheel-item">Anh hát tặng em</div>
+                        <div class="wheel-item">Em tự chọn quà</div>
+                        <div class="wheel-item">Tặng Anh Cho Em</div>
+                        <div class="wheel-item">Không có Quà</div>
+                    </div>
+                </div>
+                <button id="spin-wheel">Quay</button>
+            </div>
+            <div id="wheel-result" class="hidden">
+                <h4>Chúc mừng!</h4>
+                <p id="result-text"></p>
+            </div>
+            <button class="back-to-games">Quay lại</button>
+        </div>
+    </div>
+
+    <!-- Phần món quà -->
+    <div id="gift-section" class="section hidden">
+        <button class="back-btn"><i class="fas fa-arrow-left"></i> Quay lại vũ trụ</button>
+        <div class="gift-container">
+            <h2>Món Quà Đặc Biệt</h2>
+            <div class="gift-box">
+                <div class="gift-lid"></div>
+                <div class="gift-body"></div>
+                <div class="gift-ribbon"></div>
+            </div>
+            <button id="open-gift" class="animate__animated animate__pulse animate__infinite">Mở Quà</button>
+            
+            <div id="gift-content" class="hidden">
+                <div class="gift-message">
+                    <h3>Món quà bất ngờ!</h3>
+                    <p>Anh có một món quà dành cho em, nhưng em phải đợi đến ngày gặp nhau mới biết nhé!</p>
+                </div>
+                <div class="gift-ticket">
+                    <h4>Vé Hẹn Hò Đặc Biệt</h4>
+                    <p>Vé này có thể đổi lấy một buổi hẹn bất kỳ em muốn!</p>
+                </div>
+                <button id="future-btn">Nhấn vào đây để xem tương lai</button>
+                <div id="future-message" class="hidden">
+                    <p>Năm sau anh vẫn sẽ yêu em nhiều hơn hôm nay!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup wish -->
+    <div id="wish-popup" class="hidden">
+        <div class="wish-content">
+            <div class="close-wish">×</div>
+            <div class="heart-animation"></div>
+            <p>Anh ước rằng năm nào anh cũng được chúc mừng sinh nhật em như thế này! 💖</p>
+        </div>
+    </div>
+
+    <!-- Popup video -->
+    <div id="video-popup" class="hidden">
+        <div class="video-content">
+            <div class="close-video">×</div>
+            <div class="video-placeholder">
+                <img src="images/video.mp4" alt="Video kỷ niệm">
+                <div class="play-icon">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+            <p>Một video ngắn với những khoảnh khắc đáng nhớ của chúng mình</p>
+        </div>
+    </div>
+
+    <!-- Audio controls -->
+    <div class="audio-control">
+        <button id="toggle-audio">
+            <i class="fas fa-volume-up"></i>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
